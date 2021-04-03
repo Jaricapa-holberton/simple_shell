@@ -2,15 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 
-/*int main(int ac, char **av)
-{
-    char *piece = strtok(*av, " ");
-        while(piece != NULL){
-        printf("%s\n", piece);
-        piece = strtok(NULL, " ");          
-    }
-    return 0;
-}*/
+//falta definir el EOF y el ctrl + D
 
 int main()
 {
