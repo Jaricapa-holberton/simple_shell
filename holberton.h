@@ -1,8 +1,5 @@
 #ifndef SHELL_BASIC_H
 #define SHELL_BASIC_H
-#define LSH_RL_BUFSIZE 1024
-#define LSH_TOK_BUFSIZE 64
-#define LSH_TOK_DELIM " \t\r\n\a"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,6 +26,15 @@ typedef struct builtins_func
 	int (*function)(char **);
 	
 } built;
+
+void lsh_loop(void);
+char *lsh_read_line(void);
+char *lsh_read_line(void);
+char **lsh_split_line(char *line);
+int lsh_launch(char **args);
+int lsh_cd(char **args);
+int lsh_help(char **args);
+int lsh_exit(char **args);
 
 /* Functios for Built-in commands*/
 int env_func(__attribute__((unused))char **p);
