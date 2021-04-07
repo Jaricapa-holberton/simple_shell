@@ -14,6 +14,19 @@ variation of Shell is called Bourne Against Shell -BASH written by
 Stephen Bourne at Bell Labs too. Distributed as the shell for UNIX Version
 7 in 1979
 
+[Authors]
+# Authors
+
+ 👤 **Jaime Andrés Aricapa**
+
+- Twitter: [@Jaime95_Aricapa](https://twitter.com/Jaime95_Aricapa)
+- Github: [@Jaricapa-holberton](https://github.com/Jaricapa-holberton)
+
+👤 **Frank J. Grijalba H.**
+
+- Twitter: [@FrankGrijalba](https://twitter.com/FrankGrijalba)
+- Github: [@FRANK-GRIJALBA](https://github.com/FRANK-GRIJALBA)
+
 Invocation
 Usage: sHell [filename]
 

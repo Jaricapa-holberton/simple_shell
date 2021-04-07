@@ -31,7 +31,7 @@ char **lsh_split_line(char *line)
 		{
 			/* cambiar realloc */
 			bufsize += LSH_TOK_BUFSIZE;
-			tokens = realloc(tokens, bufsize * sizeof(char*));
+			tokens = _realloc(tokens, bufsize, (bufsize * (2 * sizeof(char*))));
 			if (!tokens)
 			{
 				/* cambiar fprintf y stderr */

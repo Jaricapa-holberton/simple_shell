@@ -49,14 +49,14 @@ int lsh_help(char **args)
 {
 	int i;
 	/* cambiar los printf */
-	printf("Stephen Brennan's LSH\n");
-	printf("Type program names and arguments, and hit enter.\n");
-	printf("The following are built in:\n");
+	_puts("Jaime Aricapa and Frank Grijalba\n");
+	_puts("Type program names and arguments, and hit enter.\n");
+	_puts("The following are built in:\n");
 	for (i = 0; i < lsh_num_builtins(); i++)
 	{
-		printf("  %s\n", builtin_str[i]);
+		_puts(builtin_str[i]);
 	}
-	printf("Use the man command for information on other programs.\n");
+	_puts("Use the man command for information on other programs.\n");
 	return (1);
 }
 /**
@@ -87,7 +87,7 @@ int lsh_execute(char **args)
 	}
 	for (i = 0; i < lsh_num_builtins(); i++)
 	{
-		if (strcmp(args[0], builtin_str[i]) == 0) 
+		if (_strcmp(args[0], builtin_str[i]) == 0) 
 			return ((*builtin_func[i])(args));
 	}
 	return (lsh_launch(args));
