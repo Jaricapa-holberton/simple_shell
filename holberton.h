@@ -1,5 +1,8 @@
 #ifndef SHELL_BASIC_H
 #define SHELL_BASIC_H
+#define LSH_RL_BUFSIZE 1024
+#define LSH_TOK_BUFSIZE 64
+#define LSH_TOK_DELIM " \t\r\n\a"
 
 #include <stdio.h>
 #include <stdlib.h>
