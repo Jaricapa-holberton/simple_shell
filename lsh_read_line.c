@@ -7,10 +7,11 @@
  */
 char *lsh_read_line(void)
 {
-  int bufsize = LSH_RL_BUFSIZE;
   int position = 0;
-  char *buffer = malloc(sizeof(char) * bufsize);
+  int bufsize = LSH_RL_BUFSIZE;
   int c;
+  char *buffer = malloc(sizeof(char) * bufsize);
+  
 
   if (!buffer) {
     fprintf(stderr, "lsh: allocation error\n");
@@ -19,7 +20,7 @@ char *lsh_read_line(void)
 
   while (1) {
     // Read a character
-    c = getchar();
+    c = getchar(); 
 
     // If we hit EOF, replace it with a null character and return.
     if (c == EOF || c == '\n') {
