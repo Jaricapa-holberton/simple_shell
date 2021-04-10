@@ -1,18 +1,18 @@
 #include "holberton.h"
 /* Function Declarations for builtin shell commands: */
-int lsh_cd(char **args);
-int lsh_help(char **args);
-int lsh_exit(char **args);
+int shell_cd(char **args);
+int shell_help(char **args);
+int shell_exit(char **args);
 /* List of builtin commands, followed by their corresponding functions. */
 char *builtin_str[] = {"cd", "help", "exit"};
-int (*builtin_func[]) (char **) = {&lsh_cd, &lsh_help, &lsh_exit};
+int (*builtin_func[]) (char **) = {&shell_cd, &shell_help, &shell_exit};
 /**
  * main - function main balblabla
  * @var1: balbla
  * @var2: balblab
  * Return: return balblabva
  */
-int lsh_num_builtins()
+int shell_num_builtins()
 {
 	return (sizeof(builtin_str) / sizeof(char *));
 }
@@ -23,7 +23,7 @@ int lsh_num_builtins()
  * @var2: balblab
  * Return: return balblabva
  */
-int lsh_cd(char **args)
+int shell_cd(char **args)
 {
 	if (args[1] == NULL)
 	{
@@ -45,16 +45,18 @@ int lsh_cd(char **args)
  * @var2: balblab
  * Return: return balblabva
  */
-int lsh_help(char **args)
+int shell_help(char **args)
 {
 	int i;
+	*args = *args;
 	/* cambiar los printf */
 	_puts("Jaime Aricapa and Frank Grijalba\n");
 	_puts("Type program names and arguments, and hit enter.\n");
 	_puts("The following are built in:\n");
-	for (i = 0; i < lsh_num_builtins(); i++)
+	for (i = 0; i < shell_num_builtins(); i++)
 	{
 		_puts(builtin_str[i]);
+		_puts(" \n");
 	}
 	_puts("Use the man command for information on other programs.\n");
 	return (1);
@@ -65,8 +67,9 @@ int lsh_help(char **args)
  * @var2: balblab
  * Return: return balblabva
  */
-int lsh_exit(char **args)
+int shell_exit(char **args)
 {
+	*args = *args;
 	return (0);
 }
 
@@ -76,19 +79,54 @@ int lsh_exit(char **args)
  * @var2: balblab
  * Return: return balblabva
  */
-int lsh_execute(char **args)
+int shell_execute(char **args)
 {
-	int i;
-
-	if (args[0] == NULL)
+	int i = 0, c = 0;
+	struct stat st;
+	char *path = NULL, *pathcat1 = NULL, *pathcat2 = NULL, *argenviron = NULL;
+	char **environs = NULL;
+	
+if (args[0] == NULL)
 	{
 		/* An empty command was entered.*/
 		return (1);
 	}
-	for (i = 0; i < lsh_num_builtins(); i++)
+
+	//Trae el contenido de el entorno PATH
+	path = _getenv("PATH");
+	//Split para cada ":" de las rutas de entorno
+	environs = shell_split_line(path);
+
+		/*for (i = 0; i < _strlen(*environs); i++){
+			printf("environs[%i]--> %s\n", i, environs[i]);
+		}*/
+
+	for (i = 0; i < _strlen(*environs); i++){
+	
+	pathcat1 = str_concat(environs[i], "/");
+	pathcat2 = str_concat(pathcat1, args[0]);
+		
+	c = stat(pathcat2,&st);
+
+	if (c == 0){
+	argenviron = pathcat2;
+	break;
+	}
+	pathcat1 = "";
+	pathcat2 = "";
+}
+
+if (c == 0){
+	//free(pathcat2);
+	args[0] = argenviron;
+	return (shell_launch(args));
+}else{
+	//free(pathcat2);
+	for (i = 0; i < shell_num_builtins(); i++)
 	{
 		if (_strcmp(args[0], builtin_str[i]) == 0) 
 			return ((*builtin_func[i])(args));
 	}
-	return (lsh_launch(args));
+}
+	return (shell_launch(args));
 }

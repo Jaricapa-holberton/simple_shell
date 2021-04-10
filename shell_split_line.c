@@ -1,6 +1,6 @@
 #include "holberton.h"
-#define LSH_TOK_BUFSIZE 64
-#define LSH_TOK_DELIM " \t\r\n\a"
+#define SHELL_TOK_BUFSIZE 64
+#define SHELL_TOK_DELIM " :\t\r\n\a"
 
 /**
  * main - function main balblabla
@@ -8,9 +8,9 @@
  * @var2: balblab
  * Return: return balblabva
  */
-char **lsh_split_line(char *line)
+char **shell_split_line(char *line)
 {
-	int bufsize = LSH_TOK_BUFSIZE, position = 0;
+	int bufsize = SHELL_TOK_BUFSIZE, position = 0;
 	char **tokens = malloc(bufsize * sizeof(char*));
 	char *token;
 
@@ -21,7 +21,7 @@ char **lsh_split_line(char *line)
 		exit(EXIT_FAILURE);
 	}
 
-	token = strtok(line, LSH_TOK_DELIM);
+	token = strtok(line, SHELL_TOK_DELIM);
 	while (token != NULL)
 	{
 		tokens[position] = token;
@@ -30,7 +30,7 @@ char **lsh_split_line(char *line)
 		if (position >= bufsize)
 		{
 			/* cambiar realloc */
-			bufsize += LSH_TOK_BUFSIZE;
+			bufsize += SHELL_TOK_BUFSIZE;
 			tokens = _realloc(tokens, bufsize, (bufsize * (2 * sizeof(char*))));
 			if (!tokens)
 			{
@@ -39,7 +39,7 @@ char **lsh_split_line(char *line)
 				exit(EXIT_FAILURE);
 			}
 		}
-		token = strtok(NULL, LSH_TOK_DELIM);
+		token = strtok(NULL, SHELL_TOK_DELIM);
 	}
 	tokens[position] = NULL;
 	return tokens;

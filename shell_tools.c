@@ -110,6 +110,53 @@ char *_strcat(char *dest, char *src)
 }
 
 /**
+ * str_concat - concatenate to strings
+ *@s1: string
+ *@s2: string
+ * Return: the string concat
+ */
+char *str_concat(char *s1, char *s2)
+{
+  char *array;
+  int i = 0, l1 = 0, l2 = 0;
+
+  if (s1 == NULL)
+    s1 = "";
+  if (s2 == NULL)
+    s2 = "";
+
+  while (s1[l1] != '\0')
+  {
+    l1++;
+  }
+
+  while (s2[l2] != '\0')
+  {
+    l2++;
+  }
+
+  array = malloc(sizeof(*array) * (l1 + l2 + 1));
+  if (array == NULL)
+    return (NULL);
+
+  while (*s1)
+  {
+    array[i] = *s1;
+    i++;
+    s1++;
+  }
+
+  while (*s2)
+  {
+    array[i] = *s2;
+    i++;
+    s2++;
+  }
+  array[i] = '\0';
+  return (array);
+}
+
+/**
  **_strcpy - copies the string from a pointer to another
  *
  *@src: pointer that has the string information
@@ -142,8 +189,6 @@ int _putchar(char c)
 {
 	return (write(1, &c, 1));
 }
-
-#include "holberton.h"
 
 /**
  *_puts - prints a string
@@ -197,4 +242,3 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	free(ptr);
 	return ((void *)r);
 }
-

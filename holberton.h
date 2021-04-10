@@ -13,28 +13,28 @@
 #include <errno.h>
 
 /* File prototypes */
-void lsh_loop(void);
-char *lsh_read_line(void);
-char **lsh_split_line(char *line);
-int lsh_launch(char **args);
-int lsh_execute(char **args);
+void shell_loop(void);
+char *shell_read_line(void);
+char **shell_split_line(char *line);
+int shell_launch(char **args);
+int shell_execute(char **args);
 
 /* Functions for Built-in commands*/
-int lsh_cd(char **args);
-int lsh_help(char **args);
-int lsh_exit(char **args);
-
-
+int shell_cd(char **args);
+int shell_help(char **args);
+int shell_exit(char **args);
 
 /* Environment variables and Function´s */
-
+char *_getenv(const char *name);
 
 
 /* Functions for strings */
 int _strlen(char *string);
 int _strcmp(char *s1, char *s2);
+int _strncmp(char *s1, char *s2, int n);
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
+char *str_concat(char *s1, char *s2);
 int _putchar(char c);
 void _puts(char *str);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);

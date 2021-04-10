@@ -5,23 +5,23 @@
  * @var2: balblab
  * Return: return balblabva
  */
-void lsh_loop(void)
+void shell_loop(void)
 {
-	char *line;
-	char **args;
-	int status;
+	char *line = NULL;
+	char **args = NULL;
+	int status = 0;
+	
 
 	do
 	{
 		/* cambiar printf */
 		_puts("$ ");
-		line = lsh_read_line();
-		args = lsh_split_line(line);
-		status = lsh_execute(args);
+		line = shell_read_line();
+		args = shell_split_line(line);
+		status = shell_execute(args);
 
 		free(line);
-		free(args);
-		  
+		free(args);		  
 	}
 	while (status);
 }

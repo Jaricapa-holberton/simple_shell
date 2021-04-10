@@ -5,9 +5,9 @@
  * @var2: balblab
  * Return: return balblabva
  */
-int lsh_launch(char **args)
+int shell_launch(char **args)
 {
-	pid_t pid, wpid;
+	pid_t pid;
 	int status;
 
 	pid = fork();
@@ -15,7 +15,7 @@ int lsh_launch(char **args)
 	{
 		/* Child process */
 		/* cambiar execvp */
-		if (execvp(args[0], args) == -1)
+		if (execve(args[0], args, NULL) == -1)
 		{
 			perror("lsh");
 		}
@@ -28,6 +28,7 @@ int lsh_launch(char **args)
 	}
 	else
 	{
+		pid_t wpid;
 		/* Parent process */
 		do
 		{
