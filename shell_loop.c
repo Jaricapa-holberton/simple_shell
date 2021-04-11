@@ -9,8 +9,7 @@ void shell_loop(void)
 	char **lineargs = NULL;
 	int status = 0;
 
-	do
-	{
+	do {
 		/* print the prompt */
 		_puts("#cisfun$ ");
 		/* read the line from input */
@@ -21,8 +20,7 @@ void shell_loop(void)
 		status = shell_execute(lineargs);
 		/* free before new iteration */
 		free(promptline);
-		free(lineargs);		  
-	}
-	/* infinite loop minewhile status = 1 */
-	while (status);
+		free(lineargs);
+		/* infinite loop minewhile status = 1 */
+	} while (status);
 }

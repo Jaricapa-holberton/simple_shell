@@ -1,9 +1,8 @@
 #include "holberton.h"
 /**
- * main - function main balblabla
- * @var1: balbla
- * @var2: balblab
- * Return: return balblabva
+ * shell_launch - execute a binary file with commands
+ * @args: array of strings with the arguments
+ * Return: return 1 if success or exit if fails
  */
 int shell_launch(char **args)
 {
@@ -14,7 +13,6 @@ int shell_launch(char **args)
 	if (pid == 0)
 	{
 		/* Child process */
-		/* cambiar execvp */
 		if (execve(args[0], args, NULL) == -1)
 		{
 			perror("lsh");
@@ -30,11 +28,9 @@ int shell_launch(char **args)
 	{
 		pid_t wpid;
 		/* Parent process */
-		do
-		{
+		do {
 			wpid = waitpid(pid, &status, WUNTRACED);
-		}
-		while (!WIFEXITED(status) && !WIFSIGNALED(status));
+		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
 	return (1);
 }

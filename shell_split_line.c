@@ -9,7 +9,7 @@
 char **shell_split_line(char *line)
 {
 	int buffersize = SHELL_TOK_BUFFERSIZE, position = 0;
-	char **arraystr = malloc(buffersize * sizeof(char*));
+	char **arraystr = malloc(buffersize * sizeof(char *));
 	char *str;
 
 	if (!arraystr)
@@ -26,7 +26,7 @@ char **shell_split_line(char *line)
 		{
 			buffersize += SHELL_TOK_BUFFERSIZE;
 			str = _realloc(arraystr, buffersize, (buffersize *
-						    (2 * sizeof(char*))));
+							      (2 * sizeof(char *))));
 			if (!arraystr)
 			{
 				perror("lsh");
