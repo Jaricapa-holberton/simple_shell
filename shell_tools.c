@@ -40,28 +40,6 @@ char *_strdup(char *str)
 	return (p);
 }
 /**
- * _strcmp - this function compare two strings
- * @s1: the first string
- * @s2: the second string
- (* a blank line
- * Description: this function comparing two strings using the first value)?
-(* section header: the header of this function is holberton.h)*
-* Return: return a number depends os the resul fo comparation.
-*/
-int _strcmp(char *s1, char *s2)
-{
-	int j;
-
-	for (j = 0; s1[j] != '\0' || s2[j] != '\0'; j++)
-	{
-		if (s1[j] != s2[j])
-		{
-			return (s1[j] - s2[j]);
-		}
-	}
-	return (0);
-}
-/**
  * _strncmp - this function compare two strings
  * @s1: the first string
  * @s2: the second string
@@ -86,29 +64,6 @@ int _strncmp(char *s1, char *s2, int n)
 	}
 	return (0);
 }
-
-/**
- **_strcat - concatenates the string from a pointer to another
- *
- *@src: pointer that has the string to be concatenated
- *@dest: pointer that will have its string concatenated with the other
- *
- *Return: strings concatenated to dest
- */
-char *_strcat(char *dest, char *src)
-{
-	int i, j;
-
-	for (i = 0; dest[i] != 0; i++)
-	{
-	}
-	for (j = 0; src[j] != 0; j++, i++)
-	{
-		dest[i] = src[j];
-	}
-	return (dest);
-}
-
 /**
  * str_concat - concatenate to strings
  *@s1: string
@@ -155,41 +110,6 @@ char *str_concat(char *s1, char *s2)
   array[i] = '\0';
   return (array);
 }
-
-/**
- **_strcpy - copies the string from a pointer to another
- *
- *@src: pointer that has the string information
- *@dest: pointer to be copied
- *
- *Return: string copied to dest
- */
-char *_strcpy(char *dest, char *src)
-{
-	int i;
-
-	for (i = 0; *src != 0; dest++, src++, i++)
-	{
-		*dest = *src;
-	}
-	for (*dest = 0; i > 0; dest--, src--, i--)
-	{
-	}
-	return (dest);
-}
-
-/**
- * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
- */
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
 /**
  *_puts - prints a string
  *
