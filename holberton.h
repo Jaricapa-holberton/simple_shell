@@ -26,7 +26,7 @@ int shell_exit(char **args);
 int shell_num_builtins(void);
 /* Environment variables and Function´s */
 char *_getenv(const char *name);
-
+extern char **environ;
 
 /* Functions for strings */
 int _strlen(char *string);

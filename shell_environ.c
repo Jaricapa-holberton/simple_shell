@@ -8,7 +8,6 @@ char *_getenv(const char *name)
 {
 	int i = 0, j = 0, k = 0;
 	int len = _strlen((char *)name);
-	extern char **environ;
 	char **env = environ;
 	char *str = malloc(sizeof(str) * 1024);
 
