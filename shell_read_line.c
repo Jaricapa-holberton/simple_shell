@@ -1,22 +1,26 @@
 #include "holberton.h"
 /**
- * shell_read_line - ffff
- * 
- * Return: Nothing
+ * shell_read_line - get a line from the input in interative mode
+ * Return: Return the line saved from the input
  */
 char *shell_read_line(void)
 {
   char *line = NULL;
-  ssize_t bufsize = 0; // have getline allocate a buffer for us
+  ssize_t buffersize = 0;
 
-  if (getline(&line, &bufsize, stdin) == -1){
-    if (feof(stdin)) {
-      exit(EXIT_SUCCESS);  // We recieved an EOF
-    } else  {
-      perror("readline");
-      exit(EXIT_FAILURE);
-    }
+  /* have getline allocate a buffer for us */
+  if (getline(&line, &buffersize, stdin) == -1)
+  {
+	  if (feof(stdin))
+	  {
+		  /* We recieved an EOF */
+		  exit(EXIT_SUCCESS);
+	  }
+	  else
+	  {
+		  perror("readline");
+		  exit(EXIT_FAILURE);
+	  }
   }
-
-  return line;
+  return (line);
 }

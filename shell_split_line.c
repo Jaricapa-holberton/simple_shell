@@ -1,46 +1,40 @@
 #include "holberton.h"
-#define SHELL_TOK_BUFSIZE 64
+#define SHELL_TOK_BUFFERSIZE 64
 #define SHELL_TOK_DELIM " :\t\r\n\a"
-
 /**
- * main - function main balblabla
- * @var1: balbla
- * @var2: balblab
- * Return: return balblabva
+ * shell_split_line - splits the line in tokens
+ * @line: get the line from input
+ * Return: Return an array of strings of args to execute
  */
 char **shell_split_line(char *line)
 {
-	int bufsize = SHELL_TOK_BUFSIZE, position = 0;
-	char **tokens = malloc(bufsize * sizeof(char*));
-	char *token;
+	int buffersize = SHELL_TOK_BUFFERSIZE, position = 0;
+	char **arraystr = malloc(buffersize * sizeof(char*));
+	char *str;
 
-	if (!tokens)
+	if (!arraystr)
 	{
-		/* cambiar fprintf y stderr */
-		fprintf(stderr, "lsh: allocation error\n");
+		perror("lsh");
 		exit(EXIT_FAILURE);
 	}
-
-	token = strtok(line, SHELL_TOK_DELIM);
-	while (token != NULL)
+	str = strtok(line, SHELL_TOK_DELIM);
+	while (str != NULL)
 	{
-		tokens[position] = token;
+		arraystr[position] = str;
 		position++;
-
-		if (position >= bufsize)
+		if (position >= buffersize)
 		{
-			/* cambiar realloc */
-			bufsize += SHELL_TOK_BUFSIZE;
-			tokens = _realloc(tokens, bufsize, (bufsize * (2 * sizeof(char*))));
-			if (!tokens)
+			buffersize += SHELL_TOK_BUFFERSIZE;
+			str = _realloc(arraystr, buffersize, (buffersize *
+						    (2 * sizeof(char*))));
+			if (!arraystr)
 			{
-				/* cambiar fprintf y stderr */
-				fprintf(stderr, "lsh: allocation error\n");
+				perror("lsh");
 				exit(EXIT_FAILURE);
 			}
 		}
-		token = strtok(NULL, SHELL_TOK_DELIM);
+		str = strtok(NULL, SHELL_TOK_DELIM);
 	}
-	tokens[position] = NULL;
-	return tokens;
+	arraystr[position] = NULL;
+	return (arraystr);
 }

@@ -1,18 +1,14 @@
 #include "holberton.h"
 /**
- * main - function main balblabla
- * @argc: balbla
- * @argv: balblab
- * Return: return balblabva
+ * main - function main
+ * @argc: get a count of arguments
+ * @argv: get a array of arguments
+ * Return: return EXIT_SUCCESS
  */
 int main(int argc, char **argv)
 {
-	/* Load config files, if any.*/
-
 	/* Run command loop. */
 	shell_loop();
-
 	/* Perform any shutdown/cleanup. */
-
 	return EXIT_SUCCESS;
 }
