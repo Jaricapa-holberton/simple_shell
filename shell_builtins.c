@@ -6,7 +6,8 @@ int shell_exit(char **args);
 int shell_env(char **environ);
 /* List of builtin commands, followed by their corresponding functions. */
 char *built_in_name[] = {"cd", "help", "exit", "env"};
-int (*search_builtin[]) (char **) = {&shell_cd, &shell_help, &shell_exit, &shell_env};
+int (*search_builtin[]) (char **) = {&shell_cd,
+				     &shell_help, &shell_exit, &shell_env};
 /**
  * shell_num_builtins - count the amount of builtins avalibe
  * Return: return the number of builtins

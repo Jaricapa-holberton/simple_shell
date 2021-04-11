@@ -1,7 +1,4 @@
 #include "holberton.h"
-/* List of builtin commands, followed by their corresponding functions. */
-char *builtin_str[] = {"cd", "help", "exit"};
-int (*builtin_func[]) (char **) = {&shell_cd, &shell_help, &shell_exit};
 /**
  * shell_execute - execute the comands inserted from input
  * @args: array of strings with the arguments
@@ -9,15 +6,16 @@ int (*builtin_func[]) (char **) = {&shell_cd, &shell_help, &shell_exit};
  */
 int shell_execute(char **args)
 {
+	/* List of builtin commands, followed by their corresponding functions. */
+	char *builtin_str[] = {"cd", "help", "exit"};
 	int i = 0, c = 0;
 	struct stat st;
 	char *path = NULL, *pathcat1 = NULL, *pathcat2 = NULL, *argenviron = NULL;
 	char **environs = NULL;
 
+	int (*builtin_func[]) (char **) = {&shell_cd, &shell_help, &shell_exit};
 	if (args[0] == NULL)
-	{
 		return (1);
-	}
 	path = _getenv("PATH");
 	environs = shell_split_line(path);
 	for (i = 0; i < _strlen(*environs); i++)
@@ -35,13 +33,11 @@ int shell_execute(char **args)
 	}
 	if (c == 0)
 	{
-		/*free(pathcat2); */
 		args[0] = argenviron;
 		return (shell_launch(args));
 	}
 	else
 	{
-		/*free(pathcat2);*/
 		for (i = 0; i < shell_num_builtins(); i++)
 		{
 			if (_strcmp(args[0], builtin_str[i]) == 0)
