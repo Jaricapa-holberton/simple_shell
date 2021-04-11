@@ -23,7 +23,7 @@ int shell_execute(char **args);
 int shell_cd(char **args);
 int shell_help(char **args);
 int shell_exit(char **args);
-
+int shell_num_builtins(void);
 /* Environment variables and Function´s */
 char *_getenv(const char *name);
 
