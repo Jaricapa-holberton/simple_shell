@@ -28,35 +28,35 @@ Stephen Bourne at Bell Labs too. Distributed as the shell for UNIX Version
 - Github: [@FRANK-GRIJALBA](https://github.com/FRANK-GRIJALBA)
 
 Invocation
-Usage: sHell [filename]
+Usage: simple_shell [filename]
 
-To invoke sHell, compile all .c files in the repository with the
-flag -o sHell and run the executable:
+To invoke simple_shell, compile all .c files in the repository with the
+flag -o simple_shell and run the executable:
 
-gcc -Wall -Werror -Wextra -pedantic gcc -Wall - *.c -o sHell
-./sHell
-sHell can be invoked both interactively and non-interactively.
+gcc -Wall -Werror -Wextra -pedantic gcc -Wall - *.c -o simple_shell
+./simple_shell
+simple_shell can be invoked both interactively and non-interactively.
 
-Interactive mode: sHell is connected to a terminal and displays the prompt
+Interactive mode: simple_shell is connected to a terminal and displays the prompt
 $ when it is ready to read a command.
 
 Example:
 
-$./sHell
+$./simple_shell
 $
-Non interactive mode If sHell is invoked with standard input not connected
+Non interactive mode If simple_shell is invoked with standard input not connected
 to a terminal, it reads and executes received commands in order.
 
 Example:
 
-$ echo "echo 'Holberton'" | ./sHell
+$ echo "echo 'Holberton'" | ./simple_shell
 'Holberton'
 $
 Cat redirection You can get the same result using the command cat.
 
 Example:
 
-$ cat test_cat | ./sHell
+$ cat test_cat | ./simple_shell
 'Hello'
 "World"
 /home/user/simple_shell
@@ -79,5 +79,5 @@ drwxrwxr-x  3 vagrant vagrant 4096 Nov 26 02:13 simple_shell
 drwxrwxr-x  7 vagrant vagrant 4096 Nov 24 03:33 temptest
 
 Authors
-XXX <nick>
-XXX <nick>
+Frank Grijalba
+Jaime Aricapa
