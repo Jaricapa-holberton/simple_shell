@@ -23,7 +23,7 @@ char *_getenv(const char *name)
 			{
 				while (env[i][len + j] != '\0')
 				{
-					str[k] = (env[i][len + j]);
+					str[k] = (env[i][len + j + 1]);
 					k++;
 					j++;
 				}
@@ -31,6 +31,4 @@ char *_getenv(const char *name)
 			}
 		}
 	}
-	perror("command not finded");
-	exit(EXIT_FAILURE);
 }
