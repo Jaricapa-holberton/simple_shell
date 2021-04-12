@@ -1,4 +1,5 @@
 #include "holberton.h"
+
 /**
  * shell_execute - execute the comands inserted from input
  * @args: array of strings with the arguments
@@ -6,12 +7,12 @@
  */
 int shell_execute(char **args)
 {
-	/* List of builtin commands, followed by their corresponding functions. */
 	char *builtin_str[] = {"cd", "help", "exit"};
 	int i = 0, c = 0;
 	struct stat st;
-	char *path = NULL, *pathcat1 = NULL, *pathcat2 = NULL, *argenviron = NULL;
-	char **environs = NULL;
+	char *path = NULL, *pathcat1 = NULL;
+	char *enviroment = NULL;
+	char **environs = NULL, *pathcat2 = NULL, *argenviron = NULL;
 
 	int (*builtin_func[]) (char **) = {&shell_cd, &shell_help, &shell_exit};
 	if (args[0] == NULL)
@@ -36,13 +37,27 @@ int shell_execute(char **args)
 		args[0] = argenviron;
 		return (shell_launch(args));
 	}
-	else
+	else if (c == -1)
 	{
 		for (i = 0; i < shell_num_builtins(); i++)
 		{
 			if (_strcmp(args[0], builtin_str[i]) == 0)
 				return ((*builtin_func[i])(args));
 		}
+		c = 1;
 	}
-	return (shell_launch(args));
+	if (c == 1)
+	{
+		enviroment = _getenv(args[0]);
+		if (enviroment != NULL)
+		{
+			write(STDOUT_FILENO, enviroment, _strlen(enviroment));
+			write(STDOUT_FILENO, "\n", 2);
+			return (1);
+		}
+	}
+	else
+	{
+		return (shell_launch(args));
+	}
 }

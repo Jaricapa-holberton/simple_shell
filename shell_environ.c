@@ -11,7 +11,7 @@ char *_getenv(const char *name)
 	char **env = environ;
 	char *str = malloc(sizeof(str) * 1024);
 
-	while (*env[i] != '\0')
+	while (env[i][j] != '\0')
 	{
 		if (_strncmp(env[i], (char *)name, len) != 0)
 		{
@@ -31,4 +31,6 @@ char *_getenv(const char *name)
 			}
 		}
 	}
+	perror("command not finded");
+	exit(EXIT_FAILURE);
 }
