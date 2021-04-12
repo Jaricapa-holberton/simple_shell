@@ -15,6 +15,7 @@ int shell_launch(char **args)
 		/* Child process */
 		if (execve(args[0], args, NULL) == -1)
 		{
+			//liberar (talvez) args[0]
 			perror("lsh");
 		}
 		exit(EXIT_FAILURE);
@@ -22,6 +23,7 @@ int shell_launch(char **args)
 	else if (pid < 0)
 	{
 		/* Error forking */
+		
 		perror("lsh");
 	}
 	else
@@ -32,5 +34,6 @@ int shell_launch(char **args)
 			wpid = waitpid(pid, &status, WUNTRACED);
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
+	free(args[0]);
 	return (1);
 }

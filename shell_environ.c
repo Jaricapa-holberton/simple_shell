@@ -11,6 +11,11 @@ char *_getenv(const char *name)
 	char **env = environ;
 	char *str = malloc(sizeof(str) * 1024);
 
+	if (!name){
+	free (str);
+	return (NULL);
+	}
+
 	while (env[i][j] != '\0')
 	{
 		if (_strncmp(env[i], (char *)name, len) != 0)
@@ -31,4 +36,7 @@ char *_getenv(const char *name)
 			}
 		}
 	}
+
+	free(str);
+	return (NULL);
 }

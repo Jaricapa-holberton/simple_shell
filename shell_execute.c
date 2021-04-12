@@ -6,17 +6,21 @@
  */
 int shell_execute(char **args)
 {
-	/* List of builtin commands, followed by their corresponding functions. */
-	char *builtin_str[] = {"cd", "help", "exit", "env"};
+	
+	
 	int i = 0, c = 0;
 	struct stat st;
 	char *path = NULL, *pathcat1 = NULL, *pathcat2 = NULL, *argenviron = NULL;
 	char **environs = NULL;
 
-	int (*builtin_func[]) (char **) = {&shell_cd, &shell_help, &shell_exit,
-					   &shell_env};
+	
 	if (args[0] == NULL)
 		return (1);
+		
+/* List of builtin commands, followed by their corresponding functions. */
+		char *builtin_str[] = {"cd", "help", "exit", "env"};
+		int (*builtin_func[]) (char **) = {&shell_cd, &shell_help, &shell_exit,
+					   &shell_env};
 	for (i = 0; i < shell_num_builtins(); i++)
 	{
 		if (_strcmp(args[0], builtin_str[i]) == 0)
@@ -28,14 +32,15 @@ int shell_execute(char **args)
 	{
 		pathcat1 = str_concat(environs[i], "/");
 		pathcat2 = str_concat(pathcat1, args[0]);
+		free(pathcat1);
 		c = stat(pathcat2, &st);
 		if (c == 0)
 		{
 			argenviron = pathcat2;
 			break;
 		}
-		pathcat1 = "";
-		pathcat2 = "";
+		//pathcat1 = "";
+		//pathcat2 = "";
 	}
 	if (c == 0)
 	{

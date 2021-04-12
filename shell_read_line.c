@@ -21,6 +21,10 @@ char *shell_read_line(void)
 			perror("readline");
 			exit(EXIT_FAILURE);
 		}
+		if (line[0] == '/'){
+			shell_launch((char **)line);
+		}
+
 	}
 	return (line);
 }

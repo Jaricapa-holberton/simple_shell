@@ -21,6 +21,7 @@ void shell_loop(void)
 		/* free before new iteration */
 		free(promptline);
 		free(lineargs);
+		
 		/* infinite loop minewhile status = 1 */
 	} while (status);
 }
