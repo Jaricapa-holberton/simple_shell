@@ -13,7 +13,8 @@ int shell_execute(char **args)
 	char *path = NULL, *pathcat1 = NULL, *pathcat2 = NULL, *argenviron = NULL;
 	char **environs = NULL;
 
-	int (*builtin_func[]) (char **) = {&shell_cd, &shell_help, &shell_exit, &shell_env};
+	int (*builtin_func[]) (char **) = {&shell_cd, &shell_help, &shell_exit,
+					   &shell_env};
 	if (args[0] == NULL)
 		return (1);
 	for (i = 0; i < shell_num_builtins(); i++)
@@ -44,6 +45,6 @@ int shell_execute(char **args)
 	else
 	{
 		_puts("Command not found\n");
-		return(1);
+		return (1);
 	}
 }
