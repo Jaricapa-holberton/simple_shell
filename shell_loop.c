@@ -10,8 +10,11 @@ void shell_loop(void)
 	int status = 0;
 
 	do {
-		/* print the prompt */
-		_puts("#cisfun$ ");
+		if (isatty(STDIN_FILENO))
+		{
+			/* print the prompt */
+			_puts("#cisfun$ ");
+		}
 		/* read the line from input */
 		promptline = shell_read_line();
 		/* tokenize the args from input */
