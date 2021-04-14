@@ -11,11 +11,10 @@ int shell_execute(char **args)
 	char *path = NULL, *pathcat1 = NULL, *pathcat2 = NULL;
 	char **environs = NULL;
 	char *builtin_str[] = {"cd", "help", "exit", "env"};
-
-	if (args[0] == NULL)
-		return (1);
 	int (*builtin_func[]) (char **) = {&shell_cd, &shell_help, &shell_exit,
 					   &shell_env};
+	if (args[0] == NULL)
+		return (1);
 	for (i = 0; i < shell_num_builtins(); i++)
 	{
 		if (_strcmp(args[0], builtin_str[i]) == 0)
