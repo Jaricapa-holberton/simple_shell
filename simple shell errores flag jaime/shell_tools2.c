@@ -7,7 +7,7 @@
  */
 char *str_concat(char *s1, char *s2)
 {
-	char *array;
+	char *array = NULL;
 	int i = 0, l1 = 0, l2 = 0;
 
 	if (s1 == NULL)
@@ -38,6 +38,7 @@ char *str_concat(char *s1, char *s2)
 		s2++;
 	}
 	array[i] = '\0';
+	
 	return (array);
 }
 /**

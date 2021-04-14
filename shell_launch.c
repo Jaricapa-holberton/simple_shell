@@ -8,6 +8,7 @@ int shell_launch(char **args)
 {
 	pid_t pid;
 	int status;
+	pid_t wpid;
 
 	pid = fork();
 	if (pid == 0)
@@ -27,14 +28,21 @@ int shell_launch(char **args)
 		perror("lsh");
 	}
 	else
-	{
-		pid_t wpid;
+	{		
 		/* Parent process */
-		do {
-			
+		do {			
 			wpid = waitpid(pid, &status, WUNTRACED);
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
+		wpid = 0;
 	}
 	free(args[0]);
-	return (1);
+	if (wpid == 0)
+	{
+		wpid = 1;
+		return (wpid);
+	}
+	else
+	{
+		return (1);
+	}
 }

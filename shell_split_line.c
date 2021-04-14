@@ -11,9 +11,10 @@ char **shell_split_line(char *line)
 	char **arraystr = 0;
 	char *str;
 
-while (line[buffersize])
-	buffersize++;
-
+	while (line[buffersize])
+	{
+		buffersize++;
+	}	
 	arraystr = malloc(buffersize * sizeof(char *));
 	if (!arraystr)
 	{
