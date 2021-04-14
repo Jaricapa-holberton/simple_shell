@@ -44,9 +44,9 @@ int shell_execute(char **args)
 		}
 		//NO free(path);
 		free(pathcat2);
-		
 	}
-		//NO free(path);
+	
+		free(path);
 		free(environs);
 		
 		return(2);	
