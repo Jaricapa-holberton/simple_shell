@@ -6,10 +6,8 @@
 char *shell_read_line(void)
 {
 	char *line = NULL;
-	ssize_t buffersize = 0;
-	int i = 0;
-	
-
+	size_t  buffersize = 0;
+	//* restrict
 	/* have getline allocate a buffer for us */
 	if (getline(&line, &buffersize, stdin) < 0)
 	{

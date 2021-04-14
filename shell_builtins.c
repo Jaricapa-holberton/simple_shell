@@ -63,7 +63,7 @@ int shell_help(char **args)
  */
 int shell_exit(char **args)
 {
-	
+	(void)args;
 	return (0);
 }
 /**
@@ -75,7 +75,8 @@ int shell_env(char **args)
 {
 	char **env = environ;
 	unsigned int i, length;
-
+	(void)args;
+	
 	i = 0;
 	while (env[i])
 	{

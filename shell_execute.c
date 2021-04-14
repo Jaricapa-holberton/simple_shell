@@ -6,7 +6,7 @@
  */
 int shell_execute(char **args)
 {
-	int i = 0, c = 0, istty = 0;
+	int i = 0, c = 0;
 	struct stat st;
 	char *path = NULL, *pathcat1 = NULL, *pathcat2 = NULL; //*argenviron = NULL;
 	char **environs = NULL;
@@ -45,7 +45,7 @@ int shell_execute(char **args)
 		//NO free(path);
 		free(pathcat2);
 	}
-	
+
 		free(path);
 		free(environs);
 		
