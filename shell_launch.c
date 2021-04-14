@@ -15,7 +15,7 @@ int shell_launch(char **args)
 		/* Child process */
 		if (execve(args[0], args, NULL) == -1)
 		{
-			//liberar (talvez) args[0]
+			free(args[0]);
 			perror("lsh");
 		}
 		exit(EXIT_FAILURE);
@@ -31,6 +31,7 @@ int shell_launch(char **args)
 		pid_t wpid;
 		/* Parent process */
 		do {
+			
 			wpid = waitpid(pid, &status, WUNTRACED);
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}

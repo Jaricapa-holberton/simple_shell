@@ -1,5 +1,4 @@
 #include "holberton.h"
-#define SHELL_TOK_BUFFERSIZE 64
 #define SHELL_TOK_DELIM " :\t\r\n\a"
 /**
  * shell_split_line - splits the line in tokens
@@ -8,10 +7,14 @@
  */
 char **shell_split_line(char *line)
 {
-	int buffersize = SHELL_TOK_BUFFERSIZE, position = 0;
-	char **arraystr = malloc(buffersize * sizeof(char *));
+	int buffersize = 0, position = 0;
+	char **arraystr = 0;
 	char *str;
 
+while (line[buffersize])
+	buffersize++;
+
+	arraystr = malloc(buffersize * sizeof(char *));
 	if (!arraystr)
 	{
 		perror("lsh");
@@ -22,17 +25,17 @@ char **shell_split_line(char *line)
 	{
 		arraystr[position] = str;
 		position++;
-		if (position >= buffersize)
-		{
-			buffersize += SHELL_TOK_BUFFERSIZE;
-			str = _realloc(arraystr, buffersize, (buffersize *
-							      (2 * sizeof(char *))));
+		// if (position >= buffersize)
+		// {
+		// 	//buffersize += buffersize;
+		// 	str = _realloc(arraystr, buffersize, (buffersize *
+		// 					      (2 * sizeof(char *))));
 			if (!arraystr)
 			{
 				perror("lsh");
 				exit(EXIT_FAILURE);
 			}
-		}
+		//}
 		str = strtok(NULL, SHELL_TOK_DELIM);
 	}
 	arraystr[position] = NULL;

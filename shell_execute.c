@@ -6,20 +6,17 @@
  */
 int shell_execute(char **args)
 {
-	
-	
-	int i = 0, c = 0;
+	int i = 0, c = 0, istty = 0;
 	struct stat st;
-	char *path = NULL, *pathcat1 = NULL, *pathcat2 = NULL, *argenviron = NULL;
+	char *path = NULL, *pathcat1 = NULL, *pathcat2 = NULL; //*argenviron = NULL;
 	char **environs = NULL;
 
-	
-	if (args[0] == NULL)
+		if (args[0] == NULL)
 		return (1);
 		
 /* List of builtin commands, followed by their corresponding functions. */
-		char *builtin_str[] = {"cd", "help", "exit", "env"};
-		int (*builtin_func[]) (char **) = {&shell_cd, &shell_help, &shell_exit,
+	char *builtin_str[] = {"cd", "help", "exit", "env"};
+	int (*builtin_func[]) (char **) = {&shell_cd, &shell_help, &shell_exit,
 					   &shell_env};
 	for (i = 0; i < shell_num_builtins(); i++)
 	{
@@ -28,28 +25,29 @@ int shell_execute(char **args)
 	}
 	path = _getenv("PATH");
 	environs = shell_split_line(path);
-	for (i = 0; i < _strlen(*environs); i++)
+	// NO free(path);	
+	for (i = 0; environs[i]; i++) 
 	{
 		pathcat1 = str_concat(environs[i], "/");
 		pathcat2 = str_concat(pathcat1, args[0]);
 		free(pathcat1);
+		// NO free(path);
+		// NO free(environs);
 		c = stat(pathcat2, &st);
 		if (c == 0)
-		{
-			argenviron = pathcat2;
-			break;
+		{ 
+			args[0] = pathcat2;
+			free(path);
+			free(environs);
+			return (shell_launch(args));
+			
 		}
-		//pathcat1 = "";
-		//pathcat2 = "";
+		//NO free(path);
+		free(pathcat2);
+		
 	}
-	if (c == 0)
-	{
-		args[0] = argenviron;
-		return (shell_launch(args));
-	}
-	else
-	{
-		_puts("Command not found\n");
-		return (1);
-	}
+		//NO free(path);
+		free(environs);
+		
+		return(2);	
 }

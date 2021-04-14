@@ -7,9 +7,11 @@ char *shell_read_line(void)
 {
 	char *line = NULL;
 	ssize_t buffersize = 0;
+	int i = 0;
+	
 
 	/* have getline allocate a buffer for us */
-	if (getline(&line, &buffersize, stdin) == -1)
+	if (getline(&line, &buffersize, stdin) < 0)
 	{
 		if (feof(stdin))
 		{
@@ -21,10 +23,22 @@ char *shell_read_line(void)
 			perror("readline");
 			exit(EXIT_FAILURE);
 		}
-		if (line[0] == '/'){
-			shell_launch((char **)line);
-		}
-
 	}
-	return (line);
+	// else
+	// {
+	// 	if (line[0] == '/')
+	// 	{
+	// 		while (i <_strlen(line))
+	// 		{
+	// 			if (line[i] == '\n'){
+	// 			line[i] = '\0';
+	// 			}else{
+	// 				i++;
+	// 			}				
+	// 		}
+
+	// 		execve(line, *line, NULL);
+	// 		//shell_launch((char **)line);
+	// 	}
+		return (line);
 }
