@@ -11,7 +11,7 @@ char *shell_read_line(void)
 	/* have getline allocate a buffer for us */
 	if (getline(&line, &buffersize, stdin) < 0)
 	{
-		if (feof(stdin))
+		if (*line == EOF)
 		{
 			/* We recieved an EOF */
 			exit(EXIT_SUCCESS);
