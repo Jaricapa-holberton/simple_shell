@@ -14,7 +14,6 @@ int shell_execute(char **args)
 
 	if (args[0] == NULL)
 		return (1);
-	/* List of builtin commands, followed by their corresponding functions. */
 	int (*builtin_func[]) (char **) = {&shell_cd, &shell_help, &shell_exit,
 					   &shell_env};
 	for (i = 0; i < shell_num_builtins(); i++)
@@ -22,12 +21,10 @@ int shell_execute(char **args)
 		if (_strcmp(args[0], builtin_str[i]) == 0)
 			return ((*builtin_func[i])(args));
 	}
-
-	if (args[0][0] == '/')  //Flag 0:, comando de ruta sin entrar al PATH
+	if (args[0][0] == '/')
 	{
 		return (shell_launch(args, flag));
 	}
-
 	path = _getenv("PATH");
 	environs = shell_split_line(path);
 	for (i = 0; environs[i]; i++)
@@ -41,7 +38,7 @@ int shell_execute(char **args)
 			args[0] = pathcat2;
 			free(path);
 			free(environs);
-			flag = 1;		//Flag 1: comando concatenado desde el PATH
+			flag = 1;
 			return (shell_launch(args, flag));
 		}
 		free(pathcat2);

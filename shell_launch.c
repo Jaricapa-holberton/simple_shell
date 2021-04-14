@@ -14,7 +14,6 @@ int shell_launch(char **args, int flag)
 	pid = fork();
 	if (pid == 0)
 	{
-		/* Child process */
 		if (execve(args[0], args, NULL) == -1)
 		{
 			free(args[0]);
@@ -24,35 +23,24 @@ int shell_launch(char **args, int flag)
 	}
 	else if (pid < 0)
 	{
-		/* Error forking */
-
 		perror("lsh");
 	}
 	else
 	{
-		/* Parent process */
 		do {
 			wpid = waitpid(pid, &status, WUNTRACED);
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 		wpid = 0;
 	}
 	if (flag == 0)
-	{
-			return (1);
-	}
-	
+		return (1);
 	if (flag == 1)
-	{
-	free(args[0]);
-	}
-
+		free(args[0]);
 	if (wpid == 0)
 	{
 		wpid = 1;
 		return (wpid);
 	}
 	else
-	{
 		return (1);
-	}
 }

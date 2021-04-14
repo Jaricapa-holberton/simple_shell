@@ -34,7 +34,10 @@ void shell_loop(char **args)
 			status = 1;
 		}
 		/* free before new iteration */
-		free(promptline);
+		if (args[0][0] != '/')
+		{
+			free(promptline);
+		}
 		free(lineargs);
 		/* infinite loop minewhile status = 1 */
 	} while (status);
