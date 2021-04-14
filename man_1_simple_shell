@@ -1,4 +1,4 @@
-.TH man simple_shell "April 15, 2021" "0.1" "General Manual Simple Shell"
+.TH man(3)  "April 15 2021" "0.01" "simple_shell"
 .SH NAME
 .B simple_shell\fR \- simple UNIX command interpreter
 .SH SYNOPSIS
