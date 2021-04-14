@@ -6,7 +6,7 @@
  */
 int shell_execute(char **args)
 {
-	int i = 0, c = 0;
+	int i = 0, c = 0, flag = 0;
 	struct stat st;
 	char *path = NULL, *pathcat1 = NULL, *pathcat2 = NULL;
 	char **environs = NULL;
@@ -22,6 +22,12 @@ int shell_execute(char **args)
 		if (_strcmp(args[0], builtin_str[i]) == 0)
 			return ((*builtin_func[i])(args));
 	}
+
+	if (args[0][0] == '/')  //Flag 0:, comando de ruta sin entrar al PATH
+	{
+		return (shell_launch(args, flag));
+	}
+
 	path = _getenv("PATH");
 	environs = shell_split_line(path);
 	for (i = 0; environs[i]; i++)
@@ -35,7 +41,8 @@ int shell_execute(char **args)
 			args[0] = pathcat2;
 			free(path);
 			free(environs);
-			return (shell_launch(args));
+			flag = 1;		//Flag 1: comando concatenado desde el PATH
+			return (shell_launch(args, flag));
 		}
 		free(pathcat2);
 	}

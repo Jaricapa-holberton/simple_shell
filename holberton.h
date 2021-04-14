@@ -16,7 +16,7 @@
 void shell_loop(char **args);
 char *shell_read_line(void);
 char **shell_split_line(char *line);
-int shell_launch(char **args);
+int shell_launch(char **args, int flag);
 int shell_execute(char **args);
 void _free_double_pointer(char **d_pointer);
 

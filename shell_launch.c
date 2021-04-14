@@ -2,9 +2,10 @@
 /**
  * shell_launch - execute a binary file with commands
  * @args: array of strings with the arguments
+ * @flag: is a number for (iterar) in a if;
  * Return: return 1 if success or exit if fails
  */
-int shell_launch(char **args)
+int shell_launch(char **args, int flag)
 {
 	pid_t pid;
 	int status;
@@ -35,7 +36,16 @@ int shell_launch(char **args)
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 		wpid = 0;
 	}
+	if (flag == 0)
+	{
+			return (1);
+	}
+	
+	if (flag == 1)
+	{
 	free(args[0]);
+	}
+
 	if (wpid == 0)
 	{
 		wpid = 1;
