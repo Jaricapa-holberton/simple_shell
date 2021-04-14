@@ -4,7 +4,7 @@
  * @name: The name of the varible to find
  * Return: return the string founded
  */
-char *_getenv(const char *name) //PATH
+char *_getenv(const char *name)
 {
 	int i = 0, j = 0, k = 0;
 	int len = _strlen((char *)name);
@@ -12,11 +12,12 @@ char *_getenv(const char *name) //PATH
 
 	char *str = malloc(sizeof(char) * 150);
 
-	if (!str){
+	if (!str)
+	{
 		return (NULL);
 	}
-
-	if (!name){
+	if (!name)
+	{
 		free(str);
 		return (NULL);
 	}
@@ -30,7 +31,6 @@ char *_getenv(const char *name) //PATH
 		{
 			if (env[i][len] == '=')
 			{
-				
 				while (env[i][len + j] != '\0')
 				{
 					str[k] = (env[i][len + j + 1]);

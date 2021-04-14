@@ -24,13 +24,13 @@ int shell_launch(char **args)
 	else if (pid < 0)
 	{
 		/* Error forking */
-		
+
 		perror("lsh");
 	}
 	else
-	{		
+	{
 		/* Parent process */
-		do {			
+		do {
 			wpid = waitpid(pid, &status, WUNTRACED);
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 		wpid = 0;

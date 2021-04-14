@@ -76,7 +76,7 @@ int shell_env(char **args)
 	char **env = environ;
 	unsigned int i, length;
 	(void)args;
-	
+
 	i = 0;
 	while (env[i])
 	{

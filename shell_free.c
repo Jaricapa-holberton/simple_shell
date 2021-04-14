@@ -23,15 +23,3 @@ void _free_double_pointer(char **d_pointer)
 
 	free(d_pointer);
 }
-
-// /**
-//  * _free_parent - Entry point
-//  *@buffer: pointer
-//  *@commands: double pointer
-//  * Return: void
-//  */
-// void _free_parent(char *buffer, char **commands)
-// {
-// 	free(buffer);
-// 	_free_double_pointer(commands);
-// }

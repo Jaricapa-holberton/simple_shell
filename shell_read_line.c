@@ -1,3 +1,4 @@
+
 #include "holberton.h"
 /**
  * shell_read_line - get a line from the input in interative mode
@@ -7,7 +8,6 @@ char *shell_read_line(void)
 {
 	char *line = NULL;
 	size_t  buffersize = 0;
-	//* restrict
 	/* have getline allocate a buffer for us */
 	if (getline(&line, &buffersize, stdin) < 0)
 	{
@@ -22,21 +22,5 @@ char *shell_read_line(void)
 			exit(EXIT_FAILURE);
 		}
 	}
-	// else
-	// {
-	// 	if (line[0] == '/')
-	// 	{
-	// 		while (i <_strlen(line))
-	// 		{
-	// 			if (line[i] == '\n'){
-	// 			line[i] = '\0';
-	// 			}else{
-	// 				i++;
-	// 			}				
-	// 		}
-
-	// 		execve(line, *line, NULL);
-	// 		//shell_launch((char **)line);
-	// 	}
-		return (line);
+	return (line);
 }

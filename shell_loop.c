@@ -1,6 +1,7 @@
 #include "holberton.h"
 /**
  * shell_loop - make a infinite loop
+ * @args: array of strings with arguments
  * Return: return void
  */
 void shell_loop(char **args)
@@ -21,25 +22,20 @@ void shell_loop(char **args)
 		lineargs = shell_split_line(promptline);
 		/* execute the program as the args says */
 		status = shell_execute(lineargs);
-
-	if (status == 2)
-    {
-      _puts((char *)args[0]);
-      _puts(": ");
-      _puts("1");
-      _puts(": ");
-      _puts(lineargs[0]);
-      _puts(": ");
-      _puts("not found\n");
-      status = 1;
-    }
-    		/* free before new iteration */
-		
+		if (status == 2)
+		{
+			_puts((char *)args[0]);
+			_puts(": ");
+			_puts("1");
+			_puts(": ");
+			_puts(lineargs[0]);
+			_puts(": ");
+			_puts("not found\n");
+			status = 1;
+		}
+		/* free before new iteration */
 		free(promptline);
 		free(lineargs);
-							
 		/* infinite loop minewhile status = 1 */
 	} while (status);
-
-
 }

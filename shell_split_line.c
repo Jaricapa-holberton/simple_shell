@@ -14,7 +14,7 @@ char **shell_split_line(char *line)
 	while (line[buffersize])
 	{
 		buffersize++;
-	}	
+	}
 	arraystr = malloc(buffersize * sizeof(char *));
 	if (!arraystr)
 	{
@@ -26,17 +26,11 @@ char **shell_split_line(char *line)
 	{
 		arraystr[position] = str;
 		position++;
-		// if (position >= buffersize)
-		// {
-		// 	//buffersize += buffersize;
-		// 	str = _realloc(arraystr, buffersize, (buffersize *
-		// 					      (2 * sizeof(char *))));
-			if (!arraystr)
-			{
-				perror("lsh");
-				exit(EXIT_FAILURE);
-			}
-		//}
+		if (!arraystr)
+		{
+			perror("lsh");
+			exit(EXIT_FAILURE);
+		}
 		str = strtok(NULL, SHELL_TOK_DELIM);
 	}
 	arraystr[position] = NULL;
