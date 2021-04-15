@@ -11,42 +11,37 @@ int shell_execute(char **args)
 	char *path = NULL, *pathcat1 = NULL, *pathcat2 = NULL;
 	char **environs = NULL;
 	char *builtin_str[] = {"cd", "help", "exit", "env"};
-	char *environvars_str[] = {"PWD", "PATH"};
 
 	int (*builtin_func[]) (char **) = {&shell_cd, &shell_help, &shell_exit,
 					   &shell_env};
-
 	if (args[0] == NULL)
 		return (1);
 	for (i = 0; i < shell_num_builtins(); i++)
 	{
 		if (_strcmp(args[0], builtin_str[i]) == 0)
-			return ((*builtin_func[i])(args));
+			if (builtin_str[2] == "exit")
+				free(args[2]);
+		return ((*builtin_func[i])(args));
 	}
 	if (args[0][0] == '/')
-	{
 		return (shell_launch(args, flag));
-	}
-	for (i = 0; environvars_str[i] != NULL; i++)
+	path = _getenv("PATH");
+	environs = shell_split_line(path);
+	for (i = 0; environs[i]; i++)
 	{
-		path = _getenv(environvars_str[i]);
-		environs = shell_split_line(path);
-		for (i = 0; environs[i]; i++)
+		pathcat1 = str_concat(environs[i], "/");
+		pathcat2 = str_concat(pathcat1, args[0]);
+		free(pathcat1);
+		c = stat(pathcat2, &st);
+		if (c == 0)
 		{
-			pathcat1 = str_concat(environs[i], "/");
-			pathcat2 = str_concat(pathcat1, args[0]);
-			free(pathcat1);
-			c = stat(pathcat2, &st);
-			if (c == 0)
-			{
-				args[0] = pathcat2;
-				free(path);
-				free(environs);
-				flag = 1;
-				return (shell_launch(args, flag));
-			}
-		free(pathcat2);
+			args[0] = pathcat2;
+			free(path);
+			free(environs);
+			flag = 1;
+			return (shell_launch(args, flag));
 		}
+		free(pathcat2);
 	}
 	free(path);
 	free(environs);
