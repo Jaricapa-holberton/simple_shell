@@ -19,12 +19,12 @@ int shell_execute(char **args)
 	for (i = 0; i < shell_num_builtins(); i++)
 	{
 		if (_strcmp(args[0], builtin_str[i]) == 0)
-			if (builtin_str[2] == "exit")
-				free(args[2]);
-		return ((*builtin_func[i])(args));
+			return ((*builtin_func[i])(args));
 	}
 	if (args[0][0] == '/')
+	{
 		return (shell_launch(args, flag));
+	}
 	path = _getenv("PATH");
 	environs = shell_split_line(path);
 	for (i = 0; environs[i]; i++)
