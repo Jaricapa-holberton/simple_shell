@@ -1,4 +1,4 @@
-#include "holberton.h"
+#include "shell.h"
 /**
  * _strlen - this functions prints the lenght of a string
  * @s: string to print.
@@ -46,7 +46,7 @@ char *_strdup(char *str)
  * @n: number to compare
  (* a blank line
  * Description: this function comparing two strings using the first value)?
-(* section header: the header of this function is holberton.h)*
+(* section header: the header of this function is shell.h)*
 * Return: return a number depends os the resul fo comparation.
 */
 int _strncmp(char *s1, char *s2, int n)

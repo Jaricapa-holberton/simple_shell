@@ -1,4 +1,4 @@
-#include "holberton.h"
+#include "shell.h"
 /**
  * shell_loop - make a infinite loop
  * @args: array of strings with arguments
@@ -6,9 +6,11 @@
  */
 void shell_loop(char **args)
 {
-	char *promptline = NULL;
+	int promptline = 0;
 	char **lineargs = NULL;
 	int status = 1;
+	char *line = NULL;
+	size_t buffersize = 0;
 
 	while (status)
 	{
@@ -18,9 +20,16 @@ void shell_loop(char **args)
 			_puts("#cisfun$ ");
 		}
 		/* read the line from input */
-		promptline = shell_read_line();
+		/*promptline = shell_read_line();*/
+		promptline = getline(&line, &buffersize, stdin);
+
+		if (promptline == EOF)
+		{
+			free(line);
+			exit(EXIT_SUCCESS);
+		}
 		/* tokenize the args from input */
-		lineargs = shell_split_line(promptline);
+		lineargs = shell_split_line(line);
 		/* execute the program as the args says */
 		status = shell_execute(lineargs);
 		if (status == 2)
@@ -34,14 +43,7 @@ void shell_loop(char **args)
 			_puts("not found\n");
 			status = 1;
 		}
-		/* free before new iteration */
-		if (args[0][0] != '/')
-		{
-			free(promptline);
-		}
 		free(lineargs);
-		/* infinite loop minewhile status = 1 */
-		if (isatty(STDIN_FILENO) == 0)
-		status = 0;
 	}
+	free(line);
 }
