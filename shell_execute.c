@@ -33,18 +33,18 @@ int shell_execute(char **args)
 		environs = shell_split_line(path);
 		for (i = 0; environs[i]; i++)
 		{
-		pathcat1 = str_concat(environs[i], "/");
-		pathcat2 = str_concat(pathcat1, args[0]);
-		free(pathcat1);
-		c = stat(pathcat2, &st);
-		if (c == 0)
-		{
-			args[0] = pathcat2;
-			free(path);
-			free(environs);
-			flag = 1;
-			return (shell_launch(args, flag));
-		}
+			pathcat1 = str_concat(environs[i], "/");
+			pathcat2 = str_concat(pathcat1, args[0]);
+			free(pathcat1);
+			c = stat(pathcat2, &st);
+			if (c == 0)
+			{
+				args[0] = pathcat2;
+				free(path);
+				free(environs);
+				flag = 1;
+				return (shell_launch(args, flag));
+			}
 		free(pathcat2);
 		}
 	}
