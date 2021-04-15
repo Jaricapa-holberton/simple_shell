@@ -11,9 +11,11 @@ int shell_execute(char **args)
 	char *path = NULL, *pathcat1 = NULL, *pathcat2 = NULL;
 	char **environs = NULL;
 	char *builtin_str[] = {"cd", "help", "exit", "env"};
+	char *environvars_str[] = {"PATH", "PWD", "OLDPATH"};
 
 	int (*builtin_func[]) (char **) = {&shell_cd, &shell_help, &shell_exit,
 					   &shell_env};
+
 	if (args[0] == NULL)
 		return (1);
 	for (i = 0; i < shell_num_builtins(); i++)
@@ -25,10 +27,12 @@ int shell_execute(char **args)
 	{
 		return (shell_launch(args, flag));
 	}
-	path = _getenv("PATH");
-	environs = shell_split_line(path);
-	for (i = 0; environs[i]; i++)
+	for (i = 0; environvars_str[i] != NULL; i++)
 	{
+		path = _getenv(environvars_str[i]);
+		environs = shell_split_line(path);
+		for (i = 0; environs[i]; i++)
+		{
 		pathcat1 = str_concat(environs[i], "/");
 		pathcat2 = str_concat(pathcat1, args[0]);
 		free(pathcat1);
@@ -42,6 +46,7 @@ int shell_execute(char **args)
 			return (shell_launch(args, flag));
 		}
 		free(pathcat2);
+		}
 	}
 	free(path);
 	free(environs);
