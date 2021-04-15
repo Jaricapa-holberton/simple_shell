@@ -11,9 +11,6 @@ char *shell_read_line(void)
 	/* have getline allocate a buffer for us */
 	if (getline(&line, &buffersize, stdin) < 0)
 	{
-		// char *buffer[100];
-		// read(STDIN_FILENO, buffer, 100);
-
 		if (*line == EOF)
 		{
 			/* We recieved an EOF */
@@ -24,6 +21,6 @@ char *shell_read_line(void)
 			return ((char *)array);
 		}
 	}
-	
+
 	return (line);
 }
