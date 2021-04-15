@@ -6,13 +6,14 @@
  */
 char *shell_read_line(void)
 {
-	char *line = NULL;
+	char *line = NULL, *array = NULL;
 	size_t  buffersize = 0;
 	/* have getline allocate a buffer for us */
 	if (getline(&line, &buffersize, stdin) < 0)
 	{
-		char *buffer = NULL;
-		read(STDIN_FILENO, buffer, 10);
+		// char *buffer[100];
+		// read(STDIN_FILENO, buffer, 100);
+
 		if (*line == EOF)
 		{
 			/* We recieved an EOF */
@@ -20,8 +21,9 @@ char *shell_read_line(void)
 		}
 		else
 		{
-			return (buffer);
+			return ((char *)array);
 		}
 	}
+	
 	return (line);
 }

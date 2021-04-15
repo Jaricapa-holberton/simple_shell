@@ -8,9 +8,9 @@ void shell_loop(char **args)
 {
 	char *promptline = NULL;
 	char **lineargs = NULL;
-	int status = 0;
+	int status = 1;
 
-	do {
+	while (status){
 		if (isatty(STDIN_FILENO))
 		{
 			/* print the prompt */
@@ -40,5 +40,8 @@ void shell_loop(char **args)
 		}
 		free(lineargs);
 		/* infinite loop minewhile status = 1 */
-	} while (status);
+		if (isatty(STDIN_FILENO) == 0)
+			status = 0;
+			
+	}
 }
