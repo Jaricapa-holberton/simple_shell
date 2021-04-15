@@ -11,7 +11,7 @@ int shell_execute(char **args)
 	char *path = NULL, *pathcat1 = NULL, *pathcat2 = NULL;
 	char **environs = NULL;
 	char *builtin_str[] = {"cd", "help", "exit", "env"};
-	char *environvars_str[] = {"PWD", "PATH", "OLDPATH"};
+	char *environvars_str[] = {"PWD", "PATH"};
 
 	int (*builtin_func[]) (char **) = {&shell_cd, &shell_help, &shell_exit,
 					   &shell_env};
