@@ -1,6 +1,6 @@
-#Simple_shell
+# Simple_shell
 
-###Content
+### Content
 
 Description
 This project is a simple UNIX command language interpreter that reads and
